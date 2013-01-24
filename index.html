@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!-- This is a template for Web App Setup -->
+<!-- Author : @CashLee李秉骏 -->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<!-- Deal with the proxy cache and some browser cache here is the setting of the meta -->
+<meta http-equiv="cache-control" content="no-cache">
+<!-- This method is for the old browsers -->
+<meta http-equiv="pragma" content="no-cache">
+<meta http-equiv="expires" content="0">
+<!-- Web App Status Bar Style 状态栏样式 -->
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<!-- Web App Start Up Page For Each Device -->
+<!-- 320x460 for iPhone 3GS -->
+<meta name='description' content='jPlayer Demo' >
+<meta name='author' content='CashLee' >
+<title>jplayer demo</title>
+<!-- 库文件必须要在head里面引用，否则无法使用jplayer -->
+<script type='text/javascript' language='javascript' src='js/jquery.js'></script>
+<script type='text/javascript' language='javascript' src='js/jquery.jplayer.min.js'></script>
+<!-- jplayer播放脚本 -->
+<script type='text/javascript' language='javascript' src='js/play.js'></script>
+</head>
+<body>
+
+  <button id='play-button-1' class='play-button' data-src='mp3/dogfight.mp3'  onclick='player(this)'>头文字D</button>
+  <button id='play-button-2' class='play-button' data-src='http://f3.xiami.net/4/143/54143/522944/05_1771107144_3433896.mp3' onclick='player(this)'>黑色静态</button>
+  <button id='play-button-3' class='play-button' data-src='http://f1.xiami.net/126/516/02%206241_392891.mp3'  onclick='player(this)'>划火柴</button>
+
+  <div id='jplayer-swf'></div>
+
+  <p id='status'></p>
+
+</body>
+<!-- add library -->
+</html>
