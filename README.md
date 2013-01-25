@@ -7,7 +7,7 @@
   <li>2013/01/24：提交jPlayer Demo</li>
 </ul>
 
-<h1>ISSUE 目前遇到的问题<h1>
+<h1>ISSUE 目前遇到的问题</h1>
 <ul>
   <li>1，因为创建了Audio元素，因此在加载时产生阻塞可能导致浏览器假死</li>
   <li>2，依赖于jQuery，如果和jqMobi或者zepto.js使用时，会出现兼容问题（例如：无法播放）</li>
