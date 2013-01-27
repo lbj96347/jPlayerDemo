@@ -43,6 +43,16 @@
  */
 
 
+var mp3_url = "http://diange-fm-sound.qiniudn.com/6_1358786292.000063.mp3";
+var mySound = new buzz.sound( mp3_url );
+function playMySound(){
+  mySound.sound.play();
+}
+function pauseMySound(){
+  mySound.sound.pause();
+}
+
+
 var playStatus = false;
 
 /*
@@ -89,7 +99,7 @@ var player = function ( obj ){
         $("#" + playerButton ).css("color","green");
       },
       ended: function() { $(this).jPlayer("play"); },
-      solution: "html,flash",
+      solution: "flash,html",
       supplied: "mp3",
       swfPath : "flash/Jplayer.swf"
     });

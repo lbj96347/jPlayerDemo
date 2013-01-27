@@ -21,19 +21,59 @@
 <!-- 库文件必须要在head里面引用，否则无法使用jplayer -->
 <script type='text/javascript' language='javascript' src='js/jquery.js'></script>
 <script type='text/javascript' language='javascript' src='js/jquery.jplayer.min.js'></script>
-<!-- jplayer播放脚本 -->
-<script type='text/javascript' language='javascript' src='js/play.js'></script>
+<style>
+  body{
+    height: 1000px;
+    background: grey;
+  }
+
+  #little-box {
+    margin: 0 auto;
+    width: 100px;
+    height: 100px; 
+    background:  red;
+    /* 确保我们是在一个 3-D 空间 */
+    -webkit-transform-style: preserve-3d;
+    /*让整个行使用x-轴旋转、7秒中的动画、无限次播放以及线性 */
+    -webkit-animation-name: x-spin;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear; 
+  }
+
+  @-webkit-keyframes x-spin { 
+    0% { -webkit-transform: rotateX(0deg); } 
+    50% { -webkit-transform: rotateX(180deg); }
+    100% { -webkit-transform: rotateX(360deg); } 
+  }
+</style>
 </head>
 <body>
 
+  <h1>buzz.js player</h1>
+
+  <button onclick='playMySound(this)'>播放</button>
+  <br />
+  <br />
+  <br />
+  <button onclick='pauseMySound(this)'>停止</button>
+
+  <h1>jplayer</h1>
+
   <button id='play-button-1' class='play-button' data-src='mp3/dogfight.mp3'  onclick='player(this)'>头文字D</button>
-  <button id='play-button-2' class='play-button' data-src='http://f3.xiami.net/4/143/54143/522944/05_1771107144_3433896.mp3' onclick='player(this)'>黑色静态</button>
+  <button id='play-button-2' class='play-button' data-src='http://diange-fm-sound.qiniudn.com/6_1358786292.000063.mp3' onclick='player(this)'>华哥</button>
   <button id='play-button-3' class='play-button' data-src='http://f1.xiami.net/126/516/02%206241_392891.mp3'  onclick='player(this)'>划火柴</button>
 
   <div id='jplayer-swf'></div>
 
   <p id='status'></p>
 
+
+  <div id="little-box"></div>
+
 </body>
 <!-- add library -->
+<script  type='text/javascript' language='javascript' src="js/buzz.js"></script>
+<!-- jplayer播放脚本 -->
+<script type='text/javascript' language='javascript' src='js/play.js'></script>
 </html>
