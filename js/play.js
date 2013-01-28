@@ -12,8 +12,60 @@
  *
  */
 
+var mySound;// = new buzz.sound( mp3_url );
+var mySoundStatus = false;
+var mySoundNowID;
+var mySoundPastID;
+/*
+  mySound.sound.play();
+  mySound.sound.pause();
+*/
+
+var mySoundController = function (obj){
+  var playButton = obj.id;
+  var playurl = obj.getAttribute('data-src');
+
+  $("#status").html( playurl );
+  mySoundNowID = playButton;
+  $(".buzz-button").css("color","black");//播放按钮样式
+
+  if( mySoundNowID == undefined || mySoundPastID != mySoundNowID ){
+    if( mySound != null ){
+      mySound.stop();
+    }
+    mySound = new buzz.sound( playurl );
+    mySound.sound.play();
+    mySoundStatus = true;
+    mySoundPastID = playButton;
+    /* 改变播放按钮状态 */
+    mySound.bind("ended pause", function(e) {
+      var percent = buzz.toPercent( this.getTime(), this.getDuration() ),
+          message = "Stopped or paused at " + percent + "%";
+      console.log( message );
+      /* 改变播放按钮状态 */
+    });
+    $("#" + playButton ).css("color","green");
+  }
+  else{
+    if( mySoundStatus == true ){
+      mySound.sound.pause();
+      mySoundStatus = false;
+      /* 改变播放按钮状态 */
+      $("#" + playButton ).css("color","red");
+    }
+    else{
+      mySound.sound.play();
+      mySoundStatus = true;
+      /* 改变播放按钮状态 */
+      $("#" + playButton ).css("color","green");
+    }
+  }
+  
+}
+
 
 /*
+ * jPlayer 部分
  *
  * 文件引用方法
  *
@@ -28,8 +80,6 @@
 
 /*
  *
- * Config Modules
- * 
  * player controller config , player-button config
  *
  * 填入播放按钮的 id ，填入swf文件引入元素的 id
@@ -43,21 +93,7 @@
  */
 
 
-var mp3_url = "http://diange-fm-sound.qiniudn.com/6_1358786292.000063.mp3";
-var mySound = new buzz.sound( mp3_url );
-function playMySound(){
-  mySound.sound.play();
-}
-function pauseMySound(){
-  mySound.sound.pause();
-}
-
-
 var playStatus = false;
-
-/*
- * Executive Module 
- */
 
 var nowID;
 var pastID;
@@ -68,13 +104,11 @@ var player = function ( obj ){
   var jplayerSwf = "jplayer-swf";
   var playurl = obj.getAttribute('data-src');
 
-
   $("#status").html( playurl );
 
   nowID = playerButton;
 
   $(".play-button").css("color","black");
-
 
   /* 如果是不同的就要destroy ，如果是相同的就暂停 */
   if( nowID == undefined || pastID != nowID ){
@@ -104,7 +138,6 @@ var player = function ( obj ){
       swfPath : "flash/Jplayer.swf"
     });
 
-
   }else{
     if( playStatus == true ){
       $("#"+ jplayerSwf).jPlayer("pause");
@@ -125,3 +158,9 @@ var player = function ( obj ){
   }
 
 }
+
+$(document).ready(function(){
+  $(".buzz-button").live("click",function(){
+    mySoundController(this);
+  });
+});
